@@ -14,19 +14,19 @@ import { AuthResponse } from '../models/auth-response';
 })
 export class AuthPageComponent {
 
-  registerForm = new FormGroup({
-    fName:new FormControl(''),
-    lName:new FormControl(''),
-    phoneNumber:new FormControl(''),
-    userName:new FormControl(''),
-    password:new FormControl(''),
-    rePassword:new FormControl(''),
-  });
+  // registerForm = new FormGroup({
+  //   fName:new FormControl(''),
+  //   lName:new FormControl(''),
+  //   phoneNumber:new FormControl(''),
+  //   userName:new FormControl(''),
+  //   password:new FormControl(''),
+  //   rePassword:new FormControl(''),
+  // });
 
-  loginFrom = new FormGroup({
-    userName:new FormControl(''),
-    password:new FormControl(''),
-  });
+  // loginFrom = new FormGroup({
+  //   userName:new FormControl(''),
+  //   password:new FormControl(''),
+  // });
 
 
   showLogin: boolean = true;
@@ -41,28 +41,53 @@ export class AuthPageComponent {
 
 
   response:AuthResponse | null=null;
+
   loginRequest(): void {
-    const loginDto = new LoginDto(this.userName, this.password);
-    this.authenticationService.login(loginDto).subscribe({
-      next: (response : AuthResponse) => {
-        this.response = response;
-      },
-      error: (err) => {
-        console.error('Error fetching products:', err);
-      }
-    });
+    if (!this.userName || !this.password) {
+      this.response = {
+        status:2,
+        message : " وارد کردن تمامی فیلد ها اجباری است"
+      };
+    }
+    else{
+      const loginDto = new LoginDto(this.userName, this.password);
+      this.authenticationService.login(loginDto).subscribe({
+        next: (response : AuthResponse) => {
+          this.response = response;
+        },
+        error: (err) => {
+          console.error('Error fetching products:', err);
+        }
+      });
+    }
+
   }
 
   registerRequest(): void {
-    const registerDto = new RegisterDto(this.fName,this.lName,this.phoneNumber ,this.userName, this.password , this.rePassword);
-    this.authenticationService.register(registerDto).subscribe({
-      next: (response : AuthResponse) => {
-        this.response = response;
-      },
-      error: (err) => {
-        console.error('Error fetching products:', err);
-      }
-    });
+    if (!this.fName || !this.lName || !this.phoneNumber || !this.userName || !this.password || !this.rePassword) {
+      this.response = {
+        status:2,
+        message : " وارد کردن تمامی فیلد ها اجباری است"
+      };
+    }
+    else if (this.password != this.rePassword) {
+      this.response = {
+        status:2,
+        message : "کلمه عبور و تکرار آن یکسان نیستند"
+      };
+    }
+    else{
+      const registerDto = new RegisterDto(this.fName,this.lName,this.phoneNumber ,this.userName, this.password , this.rePassword);
+      this.authenticationService.register(registerDto).subscribe({
+        next: (response : AuthResponse) => {
+          this.response = response;
+        },
+        error: (err) => {
+          console.error('Error fetching products:', err);
+        }
+      });
+    }
+
   }
 
   changeAuthMode(showLogin : boolean): void{
