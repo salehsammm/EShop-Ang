@@ -1,0 +1,49 @@
+.main{
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+.header-nav{
+    margin-bottom: 5px;
+    background-color: rgb(166, 183, 123);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.main-content{
+    margin-top: 60px;
+}
+
+.btn-header{
+    margin: 2px 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn-header:hover {
+    color: rgb(215, 226, 215);
+    white-space: nowrap;
+    background-color: rgb(96, 111, 59);
+    cursor: pointer;
+}
+
+.btn-auth{
+    align-self: flex-end;
+}
+
+.nav-left {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

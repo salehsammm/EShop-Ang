@@ -1,0 +1,111 @@
+.container-auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.div1 {
+    margin: 10px;
+}
+
+.div1 label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.div1 input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    background: #f1f1f1;
+    border: none;
+}
+
+.div1 input[type=text]:focus,
+input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.input-submit {
+    background-color: #107e56;
+    color: white;
+    padding: 16px 20px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.8;
+}
+
+.input-submit:hover {
+    opacity: 1;
+}
+
+.form-register {
+    margin: 20px auto;
+    background: #c8e4e8;
+    padding: 20px 100px;
+    border-radius: 20px;
+    width: 40%;
+}
+
+.form-register h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.tab-group {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.tab-group li{
+    flex-grow: 1;
+}
+
+li a {  
+    display: block;
+    text-decoration: none;
+    padding: 15px 20px;
+    background: rgba(#a0b3b0, .25);
+    color: #596c69;
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+}
+
+li a :hover{
+    background: darken(#1ab188, 5%);
+    color: #ffffff;
+}
+
+.active a {
+    background: #0f906e;
+    color: #ffffff;
+}
+
+.message{
+    margin: 10px 5px;
+    padding: 10px;
+}
+
+.message-success{   
+    background-color: #78d2b1;
+    color: #168165;   
+}
+
+.message-error{   
+    background-color: #bf7474;
+    color: #8d2f1d;   
+}
+

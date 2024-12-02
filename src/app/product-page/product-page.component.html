@@ -1,0 +1,24 @@
+<div class="flex-container">
+  <!-- items-list -->
+  <div class="item-container">
+    <input [(ngModel)]="filterText" class="input-search" type="text" placeholder="جستجو" />
+      @for(product of products | filter: filterText ; track product){
+        <div class="box-product">
+          <a  [routerLink]="['/productDetail' , product.id]">
+            <img class="img-product" [src]="product.imgUrl" />
+          </a>
+          <div class="text-box">
+            <div class="product-name"> {{product.name}} </div>
+            <div class="product-price">{{product.price}} تومان</div>
+            <button (click)="addToCart(product.id)" class="btn-addtocart" type="button">
+              افزودن به سبد خرید
+            </button>
+          </div>
+        </div>
+      }
+  </div>
+
+  <!-- cart -->
+  <div class="cart-container">
+    <app-shopping-cart></app-shopping-cart>
+  </div>
