@@ -14,21 +14,6 @@ import { AuthResponse } from '../models/auth-response';
 })
 export class AuthPageComponent {
 
-  // registerForm = new FormGroup({
-  //   fName:new FormControl(''),
-  //   lName:new FormControl(''),
-  //   phoneNumber:new FormControl(''),
-  //   userName:new FormControl(''),
-  //   password:new FormControl(''),
-  //   rePassword:new FormControl(''),
-  // });
-
-  // loginFrom = new FormGroup({
-  //   userName:new FormControl(''),
-  //   password:new FormControl(''),
-  // });
-
-
   showLogin: boolean = true;
   fName: string = '';
   lName: string = '';

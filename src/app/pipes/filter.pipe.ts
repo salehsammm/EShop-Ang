@@ -5,7 +5,7 @@ import { Product } from '../models/product';
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: Product[], searchText: string): any[] {
+  transform(items: Product[], searchText: string): Product[] {
     if (!items) return [];
     if (!searchText) return items;
     searchText = searchText.toLowerCase();
