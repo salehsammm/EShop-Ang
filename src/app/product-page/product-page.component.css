@@ -67,7 +67,9 @@
 }
 
 .btn-addtocart:active {
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid black;
 }
 
 .img-product {

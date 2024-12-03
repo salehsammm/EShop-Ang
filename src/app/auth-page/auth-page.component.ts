@@ -28,23 +28,26 @@ export class AuthPageComponent {
   response:AuthResponse | null=null;
 
   loginRequest(): void {
-    if (!this.userName || !this.password) {
-      this.response = {
-        status:2,
-        message : " وارد کردن تمامی فیلد ها اجباری است"
-      };
-    }
-    else{
-      const loginDto = new LoginDto(this.userName, this.password);
-      this.authenticationService.login(loginDto).subscribe({
-        next: (response : AuthResponse) => {
-          this.response = response;
-        },
-        error: (err) => {
-          console.error('Error fetching products:', err);
-        }
-      });
-    }
+
+    const loginDto = new LoginDto(this.userName, this.password);
+    this.authenticationService.login(loginDto).subscribe({
+      next: (response : AuthResponse) => {
+        this.response = response;
+      },
+      error: (err) => {
+        console.error('Error fetching products:', err);
+      }
+    });
+
+    // if (!this.userName || !this.password) {
+    //   this.response = {
+    //     status:2,
+    //     message : " وارد کردن تمامی فیلد ها اجباری است"
+    //   };
+    // }
+    // else{
+
+    // }
 
   }
 

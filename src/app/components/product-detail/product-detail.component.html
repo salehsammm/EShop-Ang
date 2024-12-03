@@ -14,7 +14,7 @@
         <hr>
         <p class="p-price">{{product?.price}} <span>تومان</span></p>
         @if (product) {
-            <button (click)="addToCart(product.id)" class="btn-addtocart" type="button">
+            <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
                 افزودن به سبد خرید
               </button>
         }

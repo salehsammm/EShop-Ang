@@ -16,7 +16,7 @@
           <td>{{ item.count }}</td>
           <td>{{ item.productPrice * item.count }}</td>
           <td>
-            <a class="btn btn-danger" (click)="removeFromCart(item.id)">حذف</a>
+            <a class="btn btn-danger" (click)="removeFromCart(item.shoppingCartItemId)">حذف</a>
           </td>
         </tr>
       }

@@ -28,6 +28,7 @@ export class ProductPageComponent implements OnInit {
   }
 
   loadProducts(): void {
+    console.log("1");
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;

@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ProductDetailComponent } from "../components/product-detail/product-detail.component";
 
 @Component({
   selector: 'app-product-detail-page',
@@ -12,7 +13,7 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class ProductDetailPageComponent implements OnInit , OnChanges{
   productId: string | null=null;
-  // @input() productId=0;
+  productId2: number | null = null;
   product: Product | null=null;
   products: Product[] = [];
 
@@ -28,13 +29,13 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
     this.productId = this.route.snapshot.paramMap.get('id');
     this.loadProductById(Number(this.productId));
     this.loadProducts();
+    console.log(this.productId)
   }
 
   loadProductById(productId: number):void {
     this.productService.getProductById(productId).subscribe({
       next: (product) => {
         this.product = product;
-        console.log(this.product)
       },
       error: (err) => {
         console.error('Error fetching product:', err);
@@ -45,7 +46,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   addToCart(productId: number): void {
     this.shoppingCartService.addToCart(productId).subscribe({
       next: (response) => {
-        console.log(response);
+        //
       },
       error: (error) => {
         console.error('Error adding product to cart:', error);
