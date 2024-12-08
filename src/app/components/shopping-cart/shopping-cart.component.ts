@@ -12,18 +12,24 @@ import { ShoppingCart } from '../../models/shopping-cart';
 })
 export class ShoppingCartComponent implements OnInit{
   shoppingCart: ShoppingCart | null = null;
+  cartStatus:number=0;
+  userId: string | null = null;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
   ngOnInit(): void {
-    this.loadShoppingCart(1);////////////////////////////////////////////////////////////////////////change after userId
+    this.userId = localStorage.getItem('userId');
+
+    if (this.userId) {
+      this.loadShoppingCart(this.userId);
+    }
   }
 
-  loadShoppingCart(userId: number):void {
+  loadShoppingCart(userId: string):void {
     this.shoppingCartService.getShoppingCart(userId).subscribe({
       next: (cart) => {
-        this.shoppingCart = cart;
-        // console.log(this.shoppingCart);
+        this.shoppingCart = cart.shoppingCartDto;
+        this.cartStatus = cart.status;
       },
       error: (err) => {
         console.error('Error fetching shoppingCart:', err);
@@ -31,11 +37,13 @@ export class ShoppingCartComponent implements OnInit{
     });
   }
   
-  removeFromCart(shoppingCartItemId: number): void {
+  removeFromCart(shoppingCartItemId: string): void {
     this.shoppingCartService.RemoveFromCart(shoppingCartItemId).subscribe({
       next: () => {
-        // console.log('Item removed successfully');
-        this.loadShoppingCart(1);//////////////////////////////////////////////UserID
+        this.userId = localStorage.getItem('userId');
+        if (this.userId) {
+        this.loadShoppingCart(this.userId);
+        }
       },
       error: (err) => console.error('Error removing item:', err),
     });

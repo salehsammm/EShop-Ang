@@ -1,8 +1,8 @@
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export interface ShoppingCart {
-    shoppingCartId: number;
-    userId: number;
+    shoppingCartId: string;
+    userId: string;
     isFinal: boolean;
     totalPrice: number;
     shoppingCartItems: ShoppingCartItem[];

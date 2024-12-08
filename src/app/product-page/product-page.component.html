@@ -4,7 +4,7 @@
     <input [(ngModel)]="filterText" class="input-search" type="text" placeholder="جستجو" />
       @for(product of products | filter: filterText ; track product){
         <div class="box-product">
-          <a  [routerLink]="['/productDetail' , product.productId]">
+          <a (click)="goToDetail(product.productId)"  [routerLink]="['/productDetail']">
             <img class="img-product" [src]="product.imgUrl" />
           </a>
           <div class="text-box">

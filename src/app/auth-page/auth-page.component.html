@@ -1,6 +1,4 @@
 <div class="container-auth">
-
-
     <div class="form-register">
         <ul class="tab-group">
             <li (click)="changeAuthMode(true)" [ngClass]="{'active': showLogin}" class="tab"><a>ورود</a></li>
@@ -9,20 +7,20 @@
 
         @if (showLogin) {
         <h1> ورود</h1>
-        @if (response != null) {
-        <div class="message" [ngClass]="{'message-success': response.status==1,'message-error': response.status === 2}">
-            <p>{{response.message}}</p>
+        @if (loginResponse != null) {
+        <div class="message" [ngClass]="{'message-success': loginResponse.status==1,'message-error': loginResponse.status === 2}">
+            <p>{{loginResponse.message}}</p>
         </div>
         }
         <form (ngSubmit)="loginRequest()">
             <div class="div1">
                 <label>نام کاربری :</label>
-                <input [(ngModel)]="userName" type="text" maxlength="11" required
+                <input [(ngModel)]="userName" name="userName" type="text" maxlength="11" 
                     placeholder=" نام کاربری خود را وارد کنید " autofocus />
             </div>
             <div class="div1">
                 <label>کلمه عبور :</label>
-                <input [(ngModel)]="password" type="password" maxlength="11" min="6" required
+                <input [(ngModel)]="password" name="password" type="password" maxlength="11" min="6" 
                     placeholder="کلمه عبور خود را وارد کنید" />
             </div>
             <div class="div1">
@@ -42,37 +40,37 @@
         <form (ngSubmit)="registerRequest()">
             <div class="div1">
                 <label>نام :</label>
-                <input  [(ngModel)]="fName" type="text" maxlength="50" required 
+                <input  [(ngModel)]="fName" name="fName" type="text" maxlength="50"  
                 placeholder="نام خود را وارد کنید" autofocus />
             </div>
 
             <div class="div1">
                 <label>نام خانوادگی :</label>
-                <input  [(ngModel)]="lName" type="text" maxlength="100" required 
+                <input  [(ngModel)]="lName" name="lName" type="text" maxlength="100"  
                 placeholder="نام خانوادگی خود را وارد کنید">
             </div>
 
             <div class="div1">
                 <label>موبایل :</label>
-                <input [(ngModel)]="phoneNumber" type="text" maxlength="11" required
+                <input [(ngModel)]="phoneNumber" name="phoneNumber" type="text" pattern="^[0-9]*$" minlength="10" maxlength="11" 
                     placeholder="شماره موبایل خود را وارد کنید" />
             </div>
 
             <div class="div1">
                 <label>نام کاربری :</label>
-                <input [(ngModel)]="userName" type="text" maxlength="11" required
+                <input [(ngModel)]="userName" name="userName" type="text" 
                     placeholder=" نام کاربری خود را وارد کنید " />
             </div>
 
             <div class="div1">
                 <label>کلمه عبور :</label>
-                <input [(ngModel)]="password" type="password" maxlength="11" min="6" required
+                <input [(ngModel)]="password" name="password" type="password"  minlength="6" 
                     placeholder="کلمه عبور خود را وارد کنید" />
             </div>
 
             <div class="div1">
                 <label>تکرار کلمه عبور :</label>
-                <input [(ngModel)]="rePassword" type="password" maxlength="11" min="6" required
+                <input [(ngModel)]="rePassword" name="rePassword" type="password" minlength="6" 
                     placeholder="کلمه عبور خود را تکرار کنید" />
             </div>
 

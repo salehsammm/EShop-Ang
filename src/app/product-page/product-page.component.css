@@ -6,7 +6,7 @@
 .input-search {
     margin: 30px 5px;
     font-size: 20px;
-    width: 75%;
+    width: 78%;
 }
 
 .box-product {
@@ -17,7 +17,7 @@
 }
 
 .box-product:hover {
-    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 .flex-container {

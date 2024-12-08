@@ -3,6 +3,8 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import {  HomePageComponent } from './home-page/home-page.component';
 import { ProductDetailPageComponent } from './product-detail-page/product-detail-page.component';
 import { AuthPageComponent } from './auth-page/auth-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { 
@@ -16,7 +18,7 @@ export const routes: Routes = [
         component:  HomePageComponent
      },
      {
-      path: 'productDetail/:id',
+      path: 'productDetail',
       title: 'ProductDetail',
       component: ProductDetailPageComponent
      },
@@ -24,6 +26,12 @@ export const routes: Routes = [
       path: 'authentication',
       title: 'Authentication',
       component: AuthPageComponent
+     },
+     {
+      path: 'profile',
+      title: 'profile',
+      component: ProfilePageComponent,
+      canActivate: [authGuard]
      },
      
 ];
