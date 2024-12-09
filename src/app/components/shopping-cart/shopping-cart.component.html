@@ -24,7 +24,7 @@
 
   </tbody>
 </table>
-<h4>قیمت نهایی : {{shoppingCart?.totalPrice}} </h4>
+<h4>قیمت نهایی : {{shoppingCart?.totalPrice ?? 0 | price}} </h4>
 }
 @else {
 <div>

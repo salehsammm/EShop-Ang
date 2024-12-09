@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'test'
+  name: 'price'
 })
-export class TestPipe implements PipeTransform {
+export class PricePipe implements PipeTransform {
 
   transform(price: number): string {
     if (price==undefined) {
@@ -14,13 +14,14 @@ export class TestPipe implements PipeTransform {
     let result = '';
     let count = 0;
 
-    for (let i = price2.length; i >= 0; i--) {
+    for (let i=price2.length-1 ; i>=0 ; i--) {
+
       count++;
-      result += price2[i];
+      result = price2[i] + result;
 
       if (count == 3 && i>0) {
         count = 0;
-        result += ',';
+        result = ',' + result;
       }    
     }
 

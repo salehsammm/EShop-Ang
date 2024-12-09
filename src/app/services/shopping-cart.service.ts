@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';  // Import HttpClient
+import { HttpClient, HttpHeaders } from '@angular/common/http';  // Import HttpClient
 import { Observable } from 'rxjs';  // Import Observable for async operations
 import { ProductService } from './product.service'; // Import the ProductService
 import { ShoppingCart } from '../models/shopping-cart';
@@ -10,23 +10,26 @@ import { CartResponse } from '../models/cart-response';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  // private apiUrl = '/api/shoppingcart';
-  private apiUrl = 'https://localhost:44370/api/shoppingcart';
+  private apiUrl = 'api/shoppingcart';
+  // private apiUrl = 'https://localhost:44370/api/shoppingcart';
 
   constructor(private http: HttpClient) { }
 
-  addToCart(addToCartDto : AddToCartDto) {
-    const payload = { addToCartDto };
-    const url = `${this.apiUrl}/add`;
-    return this.http.post<void>(url, addToCartDto);
+  addToCart(productId: string) {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}/add/${productId}`;
+    return this.http.post<void>(url ,{} ,{ headers });
   }
 
-  getShoppingCart(userId: string) : Observable<CartResponse> {
-    const url = `${this.apiUrl}/${userId}`;
-    return this.http.get<CartResponse>(url);
+  getShoppingCart(): Observable<CartResponse> {
+    const token = localStorage.getItem('jwtToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}`;
+    return this.http.get<CartResponse>(url , {headers});
   }
 
-  RemoveFromCart(shoppingCartItemId : string) {
+  RemoveFromCart(shoppingCartItemId: string) {
     const url = `${this.apiUrl}/${shoppingCartItemId}`;
     return this.http.delete<void>(url);
   }

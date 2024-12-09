@@ -15,7 +15,7 @@
       <p class="price-t2">نوین ارتباطات بارز</p>
       <p class="price-t3"><span>74%</span> رضایت از کالا</p>
       <hr>
-      <p class="p-price">{{product?.price}} <span>تومان</span></p>
+      <p class="p-price">{{product?.price ?? 0 | price}} <span>تومان</span></p>
       @if (product) {
           <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
               افزودن به سبد خرید
@@ -30,14 +30,12 @@
     @for(product of products ; track product){
         <div class="box-product">
           <a (click)="loadProductById(product.productId)" >
-            <!-- <a (click)="loadProductById(product.productId)" [routerLink]="['/productDetail' , product.productId]"> -->
             <img class="img-product" [src]="product.imgUrl" />
           </a>
           <div class="text-box">
             <div class="product-name"> {{product.name}} </div>
-            <div class="product-price">{{product.price}} <span>تومان</span></div>
-            <button class="btn-addtocart" type="button">
-              <!-- <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button"> -->
+            <div class="product-price">{{product.price | price}}<span> تومان</span></div>
+            <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
               افزودن به سبد خرید
             </button>
           </div>

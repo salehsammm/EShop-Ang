@@ -3,12 +3,13 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { ProductIdService } from '../services/product-id.service';
 import { AddToCartDto } from '../models/add-to-cart-dto';
+import { PricePipe } from '../pipes/price.pipe';
 
 
 @Component({
   selector: 'app-product-detail-page',
+  imports: [PricePipe],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.css'
 })
@@ -19,7 +20,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   products: Product[] = [];
 
   constructor(private route: ActivatedRoute, private productService: ProductService,
-    private shoppingCartService: ShoppingCartService, private productIdService: ProductIdService) { }
+    private shoppingCartService: ShoppingCartService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.productId = this.route.snapshot.paramMap.get('id');
@@ -28,7 +29,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   }
 
   ngOnInit(): void {
-    this.productId = this.productIdService.getProductId();
+    this.productId = localStorage.getItem('productId');
     if (this.productId) {
       this.loadProductById(this.productId);
     }
@@ -37,6 +38,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   }
 
   loadProductById(productId: string): void {
+    localStorage.setItem('productId',productId);
     this.productService.getProductById(productId).subscribe({
       next: (product) => {
         this.product = product;
@@ -51,8 +53,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   addToCart(productId: string): void {
     this.userId = localStorage.getItem('userId');
     if (this.userId) {
-      const addToCartDto = new AddToCartDto(this.userId, productId);
-      this.shoppingCartService.addToCart(addToCartDto).subscribe({
+      this.shoppingCartService.addToCart(productId).subscribe({
         next: (response) => {
           //
         },

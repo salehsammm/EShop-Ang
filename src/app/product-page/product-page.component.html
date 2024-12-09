@@ -9,7 +9,7 @@
           </a>
           <div class="text-box">
             <div class="product-name"> {{product.name}} </div>
-            <div class="product-price">{{product.price}} تومان</div>
+            <div class="product-price"> تومان {{product.price | price}} تومان</div>
             <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
               افزودن به سبد خرید
             </button>

@@ -3,7 +3,6 @@
     <div class="nav-right">
       <a class="navbar-brand btn-header" routerLink="/">فروشگاه آنلاین</a>
       <a class="navbar-brand btn-header" routerLink="/products">محصولات</a>
-      <a class="navbar-brand btn-header btn-auth" routerLink="/profile"> پروفایل</a>
     </div>
 
     @if (userId) {
@@ -12,6 +11,8 @@
 
     <div class="nav-left">
       @if (userId) {
+      <a class="navbar-brand btn-header btn-auth" routerLink="/cart"> سبد خرید</a>
+      <a class="navbar-brand btn-header btn-auth" routerLink="/profile"> پروفایل</a>
       <a class="navbar-brand btn-header btn-auth" (click)="logOut()"> خروج </a>
       }
       @else {

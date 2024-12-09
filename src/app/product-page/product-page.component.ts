@@ -7,13 +7,12 @@ import { ProductService } from '../services/product.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Product } from '../models/product';
 import { RouterLink } from '@angular/router';
-import { AddToCartDto } from '../models/add-to-cart-dto';
-import { ProductIdService } from '../services/product-id.service';
+import { PricePipe } from '../pipes/price.pipe';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ShoppingCartComponent, FilterPipe, RouterLink],
+  imports: [CommonModule, FormsModule, ShoppingCartComponent, FilterPipe, RouterLink, PricePipe],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css'
 })
@@ -25,13 +24,10 @@ export class ProductPageComponent implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService ,
-              private produtIdService: ProductIdService) { }
+  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
-    // this.userId = this.userService.getUserId();
     this.userId = localStorage.getItem('userId');
-
     this.loadProducts();
   }
 
@@ -39,7 +35,6 @@ export class ProductPageComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products = data;
-        // console.log(this.products);
       },
       error: (err) => {
         console.error('Error fetching products:', err);
@@ -49,16 +44,13 @@ export class ProductPageComponent implements OnInit {
 
 
   addToCart(productId: string): void {
-    // console.log(productId);
     if (this.userId) {
-      const addToCartDto = new AddToCartDto(this.userId , productId);
-      // console.log(addToCartDto);
-      this.shoppingCartService.addToCart(addToCartDto).subscribe({
+      this.shoppingCartService.addToCart(productId).subscribe({
         next: (response) => {
         this.userId = localStorage.getItem('userId');
 
           if (this.userId) {
-          this.shoppingCartComponent.loadShoppingCart(this.userId);
+          this.shoppingCartComponent.loadShoppingCart();
           }
         },
         error: (error) => {
@@ -68,12 +60,11 @@ export class ProductPageComponent implements OnInit {
     }
     else{
       alert("userId is empty");
-      // console.log("userId is empty");
     }
   }
 
   goToDetail(productId: string): void{
-    this.produtIdService.setProductId(productId);
+    localStorage.setItem('productId',productId);
   }
 
 }

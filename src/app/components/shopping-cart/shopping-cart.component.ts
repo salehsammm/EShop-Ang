@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { ShoppingCart } from '../../models/shopping-cart';
+import { PricePipe } from '../../pipes/price.pipe';
 
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule],
+  imports: [CommonModule,PricePipe],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })
@@ -21,12 +22,12 @@ export class ShoppingCartComponent implements OnInit{
     this.userId = localStorage.getItem('userId');
 
     if (this.userId) {
-      this.loadShoppingCart(this.userId);
+      this.loadShoppingCart();
     }
   }
 
-  loadShoppingCart(userId: string):void {
-    this.shoppingCartService.getShoppingCart(userId).subscribe({
+  loadShoppingCart():void {
+    this.shoppingCartService.getShoppingCart().subscribe({
       next: (cart) => {
         this.shoppingCart = cart.shoppingCartDto;
         this.cartStatus = cart.status;
@@ -42,7 +43,7 @@ export class ShoppingCartComponent implements OnInit{
       next: () => {
         this.userId = localStorage.getItem('userId');
         if (this.userId) {
-        this.loadShoppingCart(this.userId);
+        this.loadShoppingCart();
         }
       },
       error: (err) => console.error('Error removing item:', err),

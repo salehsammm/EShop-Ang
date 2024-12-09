@@ -46,19 +46,9 @@ export class AuthPageComponent {
       this.authenticationService.login(loginDto).subscribe({
         next: (response: LoginResponse) => {
           this.loginResponse = response;
-          this.token = response.token;
-          const decodedToken: any = jwtDecode(this.token);
-          const userId = decodedToken["UserId"];
-          const userName = decodedToken["UserName"];
-          console.log(userName);
-          localStorage.setItem('jwtToken', this.token);
-          localStorage.setItem('userId', userId);
-          localStorage.setItem('userName', userName);
-
           setTimeout(() => {
             this.router.navigate(['/products']);
           }, 1500);
-
         },
         error: (err) => {
           console.error('Error FOR LOGIN:', err);
@@ -102,13 +92,6 @@ export class AuthPageComponent {
       this.authenticationService.register(registerDto).subscribe({
         next: (response: LoginResponse) => {
           this.response = response;
-          this.token = response.token;
-            const decodedToken: any = jwtDecode(this.token);
-            const userId = decodedToken["UserId"];
-            const userName = decodedToken["UserName"];
-            localStorage.setItem('jwtToken', this.token);
-            localStorage.setItem('userId', userId);
-            localStorage.setItem('userName', userName);
             setTimeout(() => {
               this.router.navigate(['/products']);
             }, 1500);
@@ -118,7 +101,6 @@ export class AuthPageComponent {
         }
       });
     }
-
   }
 
   changeAuthMode(showLogin: boolean): void {
