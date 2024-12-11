@@ -7,7 +7,7 @@ import { PricePipe } from '../../pipes/price.pipe';
 
 @Component({
   selector: 'app-shopping-cart',
-  imports: [CommonModule,PricePipe],
+  imports: [CommonModule,PricePipe,PricePipe],
   templateUrl: './shopping-cart.component.html',
   styleUrl: './shopping-cart.component.css'
 })

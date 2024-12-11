@@ -1,8 +1,12 @@
+/* @font-face {
+    font-family: 'nazanin'; 
+    src: url('fonts/B-NAZANIN.TTF') format('opentype');
+  } */
+
 html, body {
     background-color: rgb(255, 255, 255) !important;
     height: 100%;
     margin: 0;
+    /* font-family:  nazanin,Arial, sans-serif; */
     font-family: Arial, sans-serif;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

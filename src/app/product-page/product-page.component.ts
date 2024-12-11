@@ -6,27 +6,37 @@ import { FilterPipe } from '../pipes/filter.pipe'
 import { ProductService } from '../services/product.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { Product } from '../models/product';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { PricePipe } from '../pipes/price.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddCartSnackbarComponent } from '../components/add-cart-snackbar/add-cart-snackbar.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogNotLoginComponent } from '../components/dialog-not-login/dialog-not-login.component';
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, ShoppingCartComponent, FilterPipe, RouterLink, PricePipe],
+  imports: [CommonModule, FormsModule, FilterPipe, RouterLink, PricePipe, MatCardModule, MatSnackBarModule, 
+    MatDialogModule, MatButtonModule, MatInputModule],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css'
 })
 export class ProductPageComponent implements OnInit {
   filterText: string = '';
-  userId: string | null=null;
+  userId: string | null = null;
 
   @ViewChild(ShoppingCartComponent) shoppingCartComponent!: ShoppingCartComponent;
 
   products: Product[] = [];
 
-  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService) { }
+  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService,
+    private snackBar: MatSnackBar, private router: Router, readonly dialog: MatDialog) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.userId = localStorage.getItem('userId');
     this.loadProducts();
   }
@@ -47,24 +57,31 @@ export class ProductPageComponent implements OnInit {
     if (this.userId) {
       this.shoppingCartService.addToCart(productId).subscribe({
         next: (response) => {
-        this.userId = localStorage.getItem('userId');
-
-          if (this.userId) {
-          this.shoppingCartComponent.loadShoppingCart();
-          }
+          this.snackBar.openFromComponent(AddCartSnackbarComponent, {
+            data: '123', duration: 3000,
+            horizontalPosition: 'start', verticalPosition: 'bottom',
+          });
         },
         error: (error) => {
           console.error('Error adding product to cart:', error);
         }
       });
     }
-    else{
-      alert("userId is empty");
+    else {
+      this.openDialog();
     }
   }
 
-  goToDetail(productId: string): void{
-    localStorage.setItem('productId',productId);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogNotLoginComponent, {
+      width: '80%',       // Adjust width
+      height: '70%',      // Adjust height
+      maxWidth: '900px',  // Set a max width
+    });
+  }
+
+  goToDetail(productId: string): void {
+    localStorage.setItem('productId', productId);
   }
 
 }

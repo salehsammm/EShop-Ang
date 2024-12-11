@@ -16,14 +16,14 @@ export class ShoppingCartService {
   constructor(private http: HttpClient) { }
 
   addToCart(productId: string) {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('userToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.apiUrl}/add/${productId}`;
     return this.http.post<void>(url ,{} ,{ headers });
   }
 
   getShoppingCart(): Observable<CartResponse> {
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('userToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = `${this.apiUrl}`;
     return this.http.get<CartResponse>(url , {headers});

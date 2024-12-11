@@ -7,14 +7,14 @@
   </div>
   <div class="description-container">
       <h2>{{product?.name}}</h2>
-      <hr>
+      <mat-divider></mat-divider>
       <p class="description-text">{{product?.description}}<p>
   </div>
   <div class="price-container">
       <p class="price-t1">فروشنده</p>
       <p class="price-t2">نوین ارتباطات بارز</p>
       <p class="price-t3"><span>74%</span> رضایت از کالا</p>
-      <hr>
+      <mat-divider></mat-divider>
       <p class="p-price">{{product?.price ?? 0 | price}} <span>تومان</span></p>
       @if (product) {
           <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
@@ -24,12 +24,12 @@
   </div>
 </div>
   
-<hr>
+<mat-divider></mat-divider>
 <h3>کالاهای مشابه</h3>
 <div class="product-container">
     @for(product of products ; track product){
         <div class="box-product">
-          <a (click)="loadProductById(product.productId)" >
+          <a  [routerLink]="['/productDetail',product.slug]" >
             <img class="img-product" [src]="product.imgUrl" />
           </a>
           <div class="text-box">

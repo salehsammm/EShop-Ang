@@ -1,83 +1,86 @@
 <div class="container-auth">
     <div class="form-register">
-        <ul class="tab-group">
-            <li (click)="changeAuthMode(true)" [ngClass]="{'active': showLogin}" class="tab"><a>ورود</a></li>
-            <li (click)="changeAuthMode(false)" [ngClass]="{'active': !showLogin}" class="tab"><a>ثبت‌نام</a></li>
-        </ul>
+        <mat-tab-group (selectedTabChange)="changeAuthMode()" animationDuration="200ms">
+            <mat-tab label="ورود">
+                <form (ngSubmit)="loginRequest()" class="form2">
+                    @if (loginResponse != null) {
+                    <div class="message"
+                        [ngClass]="{'message-success': loginResponse.status==1,'message-error': loginResponse.status === 2}">
+                        <p>{{loginResponse.message}}</p>
+                    </div>}
+                    <mat-form-field class="input-form">
+                        <mat-label>نام کاربری</mat-label>
+                        <input matInput [(ngModel)]="userName" name="userName" type="text" required>
+                        <mat-error>لطفا نام کاربری خود را وارد کنید</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-form">
+                        <mat-label>کلمه عبور</mat-label>
+                        <input matInput [(ngModel)]="password" name="password" 
+                        [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error>لطفا کلمه عبور خود را وارد کنید</mat-error>
+                    </mat-form-field>
+                    <button mat-flat-button class="btn-submit" type="submit">ورود</button>
+                </form>
+            </mat-tab>
+            <mat-tab label="ثبت‌ نام">
+                <form (ngSubmit)="registerRequest()" class="form2">
 
-        @if (showLogin) {
-        <h1> ورود</h1>
-        @if (loginResponse != null) {
-        <div class="message" [ngClass]="{'message-success': loginResponse.status==1,'message-error': loginResponse.status === 2}">
-            <p>{{loginResponse.message}}</p>
-        </div>
-        }
-        <form (ngSubmit)="loginRequest()">
-            <div class="div1">
-                <label>نام کاربری :</label>
-                <input [(ngModel)]="userName" name="userName" type="text" maxlength="11" 
-                    placeholder=" نام کاربری خود را وارد کنید " autofocus />
-            </div>
-            <div class="div1">
-                <label>کلمه عبور :</label>
-                <input [(ngModel)]="password" name="password" type="password" maxlength="11" min="6" 
-                    placeholder="کلمه عبور خود را وارد کنید" />
-            </div>
-            <div class="div1">
-                <input type="submit" value="ورود" class="input-submit">
-            </div>
-        </form>
-        }
-        @else {
-        <h1> ثبت نام </h1>
-
-        @if (response != null) {
-        <div class="message" [ngClass]="{'message-success': response.status==1,'message-error': response.status === 2}">
-            <p>{{response.message}}</p>
-        </div>
-        }
-        
-        <form (ngSubmit)="registerRequest()">
-            <div class="div1">
-                <label>نام :</label>
-                <input  [(ngModel)]="fName" name="fName" type="text" maxlength="50"  
-                placeholder="نام خود را وارد کنید" autofocus />
-            </div>
-
-            <div class="div1">
-                <label>نام خانوادگی :</label>
-                <input  [(ngModel)]="lName" name="lName" type="text" maxlength="100"  
-                placeholder="نام خانوادگی خود را وارد کنید">
-            </div>
-
-            <div class="div1">
-                <label>موبایل :</label>
-                <input [(ngModel)]="phoneNumber" name="phoneNumber" type="text" pattern="^[0-9]*$" minlength="10" maxlength="11" 
-                    placeholder="شماره موبایل خود را وارد کنید" />
-            </div>
-
-            <div class="div1">
-                <label>نام کاربری :</label>
-                <input [(ngModel)]="userName" name="userName" type="text" 
-                    placeholder=" نام کاربری خود را وارد کنید " />
-            </div>
-
-            <div class="div1">
-                <label>کلمه عبور :</label>
-                <input [(ngModel)]="password" name="password" type="password"  minlength="6" 
-                    placeholder="کلمه عبور خود را وارد کنید" />
-            </div>
-
-            <div class="div1">
-                <label>تکرار کلمه عبور :</label>
-                <input [(ngModel)]="rePassword" name="rePassword" type="password" minlength="6" 
-                    placeholder="کلمه عبور خود را تکرار کنید" />
-            </div>
-
-            <div class="div1">
-                <input type="submit" value="ثبت نام" class="input-submit">
-            </div>
-        </form>
-        }
+                    @if (response != null) {
+                    <div class="message"
+                        [ngClass]="{'message-success': response.status==1,'message-error': response.status === 2}">
+                        <p>{{response.message}}</p>
+                    </div>}
+                    <table class="input-form"><tr>
+                            <td><mat-form-field class="input-form">
+                                    <mat-label> نام </mat-label>
+                                    <input matInput [(ngModel)]="fName" name="fName" type="text" required>
+                                    <mat-error>لطفا نام خود را وارد کنید</mat-error>
+                                </mat-form-field></td>
+                            <td><mat-form-field class="input-form">
+                                    <mat-label> نام خانوادگی</mat-label>
+                                    <input matInput [(ngModel)]="lName" name="lName" type="text" required>
+                                    <mat-error>لطفا نام خانوادگی خود را وارد کنید</mat-error>
+                                </mat-form-field></td>
+                        </tr></table>
+                    <mat-form-field class="input-form">
+                        <mat-label> موبایل </mat-label>
+                        <input matInput [(ngModel)]="phoneNumber" name="phoneNumber" pattern="^[0-9]*$" minlength="10"
+                            type="text" required #phone="ngModel">
+                        @if (phone.errors?.['required']) {
+                        <mat-error>لطفا شماره موبایل خود را وارد کنید</mat-error>
+                        }
+                        @else if ((phone.errors?.['minlength']) || (phone.errors?.['pattern'])) {
+                            <mat-error> شماره موبایل معتبر نیست</mat-error>
+                        }
+                    </mat-form-field>
+                    <mat-form-field class="input-form">
+                        <mat-label> نام کاربری </mat-label>
+                        <input matInput [(ngModel)]="userName" name="userName" type="text" required>
+                        <mat-error>لطفا نام کاربری خود را وارد کنید</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-form">
+                        <mat-label> کلمه عبور </mat-label>
+                        <input matInput [(ngModel)]="password" name="password" 
+                        [type]="hide ? 'password' : 'text'" minlength="6" required #pass="ngModel">
+                        <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        @if (pass.errors?.['required']) {
+                            <mat-error>لطفا کلمه عبور خود را وارد کنید</mat-error>
+                        }
+                        @else if (pass.errors?.['minlength']) {
+                            <mat-error> کلمه عبور باید حداقل دارای 6 کارکتر باشد</mat-error>
+                        }
+                    </mat-form-field>
+                    <mat-form-field class="input-form">
+                        <mat-label>تکرار کلمه عبور </mat-label>
+                        <input matInput [(ngModel)]="rePassword" name="rePassword" 
+                        [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        <mat-error>لطفا تکرار کلمه عبور خود را وارد کنید</mat-error>
+                    </mat-form-field>
+                    <button mat-flat-button class="btn-submit" type="submit">ثبت‌ نام</button>
+                </form>
+            </mat-tab>
+        </mat-tab-group>
     </div>
 </div>

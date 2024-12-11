@@ -20,7 +20,7 @@ export const routes: Routes = [
         component:  HomePageComponent
      },
      {
-      path: 'productDetail',
+      path: 'productDetail/:slug',
       title: 'ProductDetail',
       component: ProductDetailPageComponent
      },
@@ -40,6 +40,5 @@ export const routes: Routes = [
       title: 'cart',
       component: ShoppingCartPageComponent,
       canActivate: [authGuard]
-     },
-     
+     },  
 ];

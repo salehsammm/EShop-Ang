@@ -1,8 +1,8 @@
 <main class="main">
   <div class="header-nav">
     <div class="nav-right">
-      <a class="navbar-brand btn-header" routerLink="/">فروشگاه آنلاین</a>
-      <a class="navbar-brand btn-header" routerLink="/products">محصولات</a>
+      <a class="btn-header" mat-stroked-button routerLink="" >فروشگاه آنلاین</a>
+      <a class="btn-header" mat-stroked-button routerLink="products" routerLinkActive="active" >محصولات</a>
     </div>
 
     @if (userId) {
@@ -11,14 +11,13 @@
 
     <div class="nav-left">
       @if (userId) {
-      <a class="navbar-brand btn-header btn-auth" routerLink="/cart"> سبد خرید</a>
-      <a class="navbar-brand btn-header btn-auth" routerLink="/profile"> پروفایل</a>
-      <a class="navbar-brand btn-header btn-auth" (click)="logOut()"> خروج </a>
+      <a class="btn-header" mat-stroked-button routerLink="cart" routerLinkActive="active" > سبد خرید</a>
+      <a class="btn-header" mat-stroked-button routerLink="profile" routerLinkActive="active"> پروفایل</a>
+      <a class="btn-header" mat-stroked-button (click)="logOut()" routerLinkActive="active"> خروج </a>
       }
       @else {
-      <a class="navbar-brand btn-header btn-auth" routerLink="/authentication"> ثبت‌نام/ورود</a>
+      <a class="btn-header" mat-stroked-button routerLink="authentication" routerLinkActive="active"> ثبت‌نام/ورود</a>
       }
-
     </div>
   </div>
 </main>

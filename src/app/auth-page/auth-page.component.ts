@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { LoginDto } from '../models/login-dto';
@@ -8,14 +8,22 @@ import { AuthResponse } from '../models/auth-response';
 import { LoginResponse } from '../models/login-response';
 import { jwtDecode } from 'jwt-decode';
 import { Route, Router } from '@angular/router';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button'; 
+import {MatTabsModule} from '@angular/material/tabs'; 
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 @Component({
   selector: 'app-auth-page',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatFormFieldModule,MatInputModule, MatButtonModule,
+     MatTabsModule, MatIconModule],
   templateUrl: './auth-page.component.html',
   styleUrl: './auth-page.component.css'
 })
-export class AuthPageComponent {
+export class AuthPageComponent implements OnInit {
 
   showLogin: boolean = true;
   fName: string = '';
@@ -24,8 +32,13 @@ export class AuthPageComponent {
   userName: string = '';
   password: string = '';
   rePassword: string = '';
+  hide: boolean = true;
+  hide2: boolean = true;
 
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
 
 
   response: LoginResponse | null = null;
@@ -46,9 +59,11 @@ export class AuthPageComponent {
       this.authenticationService.login(loginDto).subscribe({
         next: (response: LoginResponse) => {
           this.loginResponse = response;
-          setTimeout(() => {
-            this.router.navigate(['/products']);
-          }, 1500);
+          if (response.status == 1) {
+            setTimeout(() => {
+              this.router.navigate(['/products']);
+            }, 500);
+          }
         },
         error: (err) => {
           console.error('Error FOR LOGIN:', err);
@@ -94,7 +109,7 @@ export class AuthPageComponent {
           this.response = response;
             setTimeout(() => {
               this.router.navigate(['/products']);
-            }, 1500);
+            }, 500);
         },
         error: (err) => {
           console.error('Error fetching products:', err);
@@ -103,20 +118,17 @@ export class AuthPageComponent {
     }
   }
 
-  changeAuthMode(showLogin: boolean): void {
+  changeAuthMode(): void {
     this.response = null;
     this.loginResponse = null;
     this.userName = '';
     this.password = '';
-
-    if (!showLogin) {
-      this.fName = '';
-      this.lName = '';
-      this.phoneNumber = '';
-      this.rePassword = '';
-    }
-
-    this.showLogin = showLogin;
+    this.fName = '';
+    this.lName = '';
+    this.phoneNumber = '';
+    this.rePassword = '';
+    this.hide = true;
+    this.hide2 = true;
   }
 
 }

@@ -18,21 +18,23 @@ export class AuthenticationService {
   private userSubject = new BehaviorSubject<boolean>(this.hasToken())
   public userStatus$ = this.userSubject.asObservable(); // In Angular, it’s a convention to use the $ suffix for Observables
 
-  register(RegisterDto: RegisterDto) : Observable<LoginResponse>{
+  register(RegisterDto: RegisterDto): Observable<LoginResponse> {
     const url = `${this.apiUrl}/register`;
     return this.http.post<LoginResponse>(url, RegisterDto).pipe(
-      map(response =>{
+      map(response => {
         this.setAuthData(response.token);
         return response;
       })
     );
   }
 
-  login(loginDto: LoginDto) : Observable<LoginResponse> {
+  login(loginDto: LoginDto): Observable<LoginResponse> {
     const url = `${this.apiUrl}/login`;
     return this.http.post<LoginResponse>(url, loginDto).pipe(
-      map(response =>{
-        this.setAuthData(response.token);
+      map(response => {
+        if (response.status == 1) {
+          this.setAuthData(response.token);
+        }
         return response;
       })
     );
@@ -45,26 +47,26 @@ export class AuthenticationService {
     this.userSubject.next(false);
   }
 
-private setAuthData(token:string): void{
-  const decodedToken: any = jwtDecode(token);
-   const userId = decodedToken["UserId"];
-   const userName = decodedToken["UserName"];
-  localStorage.setItem('userId', userId);
-  localStorage.setItem('userName', userName);
-  localStorage.setItem('userToken', token);
-  this.userSubject.next(true);
-}
+  private setAuthData(token: string): void {
+    const decodedToken: any = jwtDecode(token);
+    const userId = decodedToken["UserId"];
+    const userName = decodedToken["UserName"];
+    localStorage.setItem('userId', userId);
+    localStorage.setItem('userName', userName);
+    localStorage.setItem('userToken', token);
+    this.userSubject.next(true);
+  }
 
-private hasToken(): boolean {
-  if(localStorage.getItem('userToken')) return true;
-  return false;
-}
+  private hasToken(): boolean {
+    if (localStorage.getItem('userToken')) return true;
+    return false;
+  }
 
-getUserById(): Observable<UserDto> {
-const token = localStorage.getItem('jwtToken');
-const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  getUserById(): Observable<UserDto> {
+    const token = localStorage.getItem('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-  return this.http.get<UserDto>(`${this.apiUrl}` , {headers});
-}
+    return this.http.get<UserDto>(`${this.apiUrl}`, { headers });
+  }
 
 }

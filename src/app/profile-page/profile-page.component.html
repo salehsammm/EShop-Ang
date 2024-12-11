@@ -1,5 +1,22 @@
-<h1>نام: {{user?.fName}}</h1>
-<h1>نام خانوادگی: {{user?.lName}}</h1>
-<h1>نام کاربری: {{user?.userName}}</h1>
-<h1>شماره موبایل: {{user?.phoneNumber}}</h1>
-
+<div class="container-profile">
+    <div class="container-row">
+        <span class="span1">نام کوچک</span>
+        <span>{{user?.fName}}</span>
+        <mat-icon matTooltip="ویرایش" (click)="openDialog()">edit</mat-icon>
+    </div>
+    <div class="container-row">
+        <span class="span1">نام خانوادگی</span>
+        <span>{{user?.lName}}</span>
+        <mat-icon matTooltip="ویرایش">edit</mat-icon>
+    </div>
+    <div class="container-row">
+        <span class="span1">نام کاربری</span>
+        <span>{{user?.userName}}</span>
+        <mat-icon matTooltip="ویرایش">edit</mat-icon>
+    </div>
+    <div class="container-row">
+        <span class="span1">شماره موبایل</span>
+        <span>{{user?.phoneNumber}}</span>
+        <mat-icon matTooltip="ویرایش" (click)="openDialog()">edit</mat-icon>
+    </div>
+</div>

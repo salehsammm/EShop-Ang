@@ -1,0 +1,13 @@
+.cart-link{
+    color: rgb(112, 145, 216);
+    text-align: left;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 5px;
+}
+
+.cart-link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

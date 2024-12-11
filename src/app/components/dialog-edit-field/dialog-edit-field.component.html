@@ -1,0 +1,25 @@
+<div class="d-container">
+    <button mat-icon-button class="close-btn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <p mat-dialog-title class="d-title"> ویراش شماره موبایل</p>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content>
+        <mat-form-field class="d-input" appearance="outline">
+            <mat-label>شماره موبایل جدید</mat-label>
+            <input matInput [(ngModel)]="phoneNumber" name="phoneNumber" pattern="^[0-9]*$" minlength="10" maxlength="12"
+            type="text" required #phone="ngModel" >
+            <mat-hint>شماره موبایل جدید خود را وارد کنید</mat-hint>
+        @if (phone.errors?.['required']) {
+        <mat-error>اینجا را خالی نگذارید</mat-error>
+        }
+        @else if ((phone.errors?.['minlength']) || (phone.errors?.['pattern'])) {
+            <mat-error> شماره موبایل به شکل درست وارد نشده </mat-error>
+        }
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions >
+        <button class="d-button" mat-flat-button [disabled]="phone.invalid" 
+        disabledInteractive  [matTooltip]="phone.invalid ? 'شماره موبایل معتبر وارد کنید' : 'ویراش'" >ویراش شماره موبایل</button>
+    </div>
+</div>

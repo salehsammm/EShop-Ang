@@ -1,12 +1,8 @@
-.btn-add {
-    width: 100%;
-    margin-bottom: 20px;
-}
 
 .input-search {
-    margin: 30px 5px;
+    margin: 5px 5px;
     font-size: 20px;
-    width: 78%;
+    width: 88%;
 }
 
 .box-product {
@@ -22,69 +18,47 @@
 
 .flex-container {
     display: flex;
-    margin: 1px 30px;
-}
-
-.cart-container {
-    flex: 2;
-    margin: 50px 1px;
-    position: fixed;
-    z-index: 101;
-    top: 90px;
-    left: 50px;
-}
-
-.item-container {
-    flex: 9;
-    margin-top: 50PX;
-}
-
-.product-name {
-    font-size: 25px;
+    margin: 1px 130px;
+    margin-top: 130PX;
+    flex-wrap: wrap;
 }
 
 .product-price {
-    font-size: 20px;
+    margin-top: 30px;
+    font-size: 15px;
+    font-weight: 300;
     color: rgb(75, 39, 39);
     width: 100%;
     text-align: left;
-    ;
 }
 
-.btn-addtocart {
-    font-size: 15px;
-    padding: 10px;
-    background-color: rgb(188, 75, 75);
-    color: aliceblue;
-    border: none;
-    border-radius: 5px;
+.mat-mdc-card-subtitle {
+    display: block;
+    margin: 0;
+    font-weight: 400;
+}
+
+.mat-mdc-card-header{
+    padding: 1px 10px;
+    padding-right: 1px;
+    margin-top: 0;
+}
+
+.mat-mdc-card-title {
+    margin-top: 0px;
+}
+
+.mat-mdc-card-avatar {
+    height: 40px;
+    width: 0;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-bottom: 16px;
+    object-fit: cover;
+}
+
+.btn-addtocart2{
     width: 100%;
-    margin-top: 10px;
+    margin: 10px 2px 5px 2px;
+    border-radius: 3px;
 }
-
-.btn-addtocart:hover {
-    background-color: rgb(127, 41, 45); 
-}
-
-.btn-addtocart:active {
-    background-color: rgb(255, 255, 255);
-    color: black;
-    border: 1px solid black;
-}
-
-.img-product {
-    cursor: pointer;
-    width: 100%;
-    border-radius: 10px;
-    height: 350px;
-}
-
-.img-product:hover {
-    opacity: 0.6;
-}
-
-.text-box {
-    width: 100%;
-    padding: 1em;
-}
-
