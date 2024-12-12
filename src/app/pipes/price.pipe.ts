@@ -15,7 +15,6 @@ export class PricePipe implements PipeTransform {
     let count = 0;
 
     for (let i=price2.length-1 ; i>=0 ; i--) {
-
       count++;
       result = price2[i] + result;
 

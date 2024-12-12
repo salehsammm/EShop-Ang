@@ -45,7 +45,7 @@
                         </tr></table>
                     <mat-form-field class="input-form">
                         <mat-label> موبایل </mat-label>
-                        <input matInput [(ngModel)]="phoneNumber" name="phoneNumber" pattern="^[0-9]*$" minlength="10"
+                        <input matInput [(ngModel)]="phoneNumber" name="phoneNumber" pattern="^[0-9]*$" minlength="10" maxlength="12"
                             type="text" required #phone="ngModel">
                         @if (phone.errors?.['required']) {
                         <mat-error>لطفا شماره موبایل خود را وارد کنید</mat-error>
@@ -62,7 +62,7 @@
                     <mat-form-field class="input-form">
                         <mat-label> کلمه عبور </mat-label>
                         <input matInput [(ngModel)]="password" name="password" 
-                        [type]="hide ? 'password' : 'text'" minlength="6" required #pass="ngModel">
+                        [type]="hide2 ? 'password' : 'text'" minlength="6" required #pass="ngModel">
                         <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                         @if (pass.errors?.['required']) {
                             <mat-error>لطفا کلمه عبور خود را وارد کنید</mat-error>

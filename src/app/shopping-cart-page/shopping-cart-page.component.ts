@@ -1,29 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
 import { PricePipe } from '../pipes/price.pipe';
-import {MatTableModule} from '@angular/material/table';
-
+import { MatTableModule } from '@angular/material/table';
+import { Subscription } from 'rxjs';
+import {MatIconModule} from '@angular/material/icon'; 
+import {MatButtonModule} from '@angular/material/button'; 
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart-page',
-  imports: [PricePipe,MatTableModule],
+  imports: [PricePipe, MatTableModule, MatIconModule, MatButtonModule, RouterLink],
   templateUrl: './shopping-cart-page.component.html',
   styleUrl: './shopping-cart-page.component.css'
 })
-export class ShoppingCartPageComponent implements OnInit{
-  displayedColumns: string[] = ['productName', 'count', 'price'];
+export class ShoppingCartPageComponent implements OnInit, OnDestroy {
+  displayedColumns: string[] = ['productName','productImg', 'count', 'price', 'delete'];
   shoppingCart: ShoppingCart | null = null;
-  cartStatus:number=0;
+  cartStatus: number = 0;
   userId: string | null = null;
+  private cartSubscription: Subscription | null = null;
 
-  constructor(private shoppingCartService: ShoppingCartService) {}
+  constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.loadShoppingCart();
+    this.shoppingCartService.cartUpdate$.subscribe(()=>{
+      // console.log('add2');
+    })
+    this.shoppingCartService.getCartUpdateListener().subscribe(() => {
+      // console.log('add');
+    });
   }
 
-  loadShoppingCart():void {
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
+
+  loadShoppingCart(): void {
     this.shoppingCartService.getShoppingCart().subscribe({
       next: (cart) => {
         this.shoppingCart = cart.shoppingCartDto;
@@ -36,15 +52,15 @@ export class ShoppingCartPageComponent implements OnInit{
   }
 
   removeFromCart(shoppingCartItemId: string): void {
+    console.log(shoppingCartItemId);
     this.shoppingCartService.RemoveFromCart(shoppingCartItemId).subscribe({
       next: () => {
         this.userId = localStorage.getItem('userId');
         if (this.userId) {
-        this.loadShoppingCart();
+          this.loadShoppingCart();
         }
       },
       error: (err) => console.error('Error removing item:', err),
     });
   }
-
 }

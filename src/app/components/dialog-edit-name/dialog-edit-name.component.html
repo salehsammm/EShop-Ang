@@ -1,0 +1,21 @@
+<div class="d-container">
+    <button mat-icon-button class="close-btn" (click)="closeDialog()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <p mat-dialog-title class="d-title"> {{dialogTitle}}</p>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content>
+        <mat-form-field class="d-input" appearance="outline">
+            <mat-label>{{inputLabel}}</mat-label>
+            <input matInput [(ngModel)]="name" name="name" type="text" required #name1="ngModel" >
+            <mat-hint>{{hint}}</mat-hint>
+        @if (name1.errors?.['required']) {
+        <mat-error>اینجا را خالی نگذارید</mat-error>
+        }
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions >
+        <button class="d-button" mat-flat-button [disabled]="name1.invalid" 
+        disabledInteractive  [matTooltip]="name1.invalid ? inputLabel + '   را وارد کنید' : 'ویرایش'" >{{dialogTitle}} </button>
+    </div>
+</div>

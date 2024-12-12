@@ -56,7 +56,8 @@ export class ProductPageComponent implements OnInit {
   addToCart(productId: string): void {
     if (this.userId) {
       this.shoppingCartService.addToCart(productId).subscribe({
-        next: (response) => {
+        next: () => {
+          this.shoppingCartService.notifyCartUpdate();
           this.snackBar.openFromComponent(AddCartSnackbarComponent, {
             data: '123', duration: 3000,
             horizontalPosition: 'start', verticalPosition: 'bottom',
@@ -78,10 +79,6 @@ export class ProductPageComponent implements OnInit {
       height: '70%',      // Adjust height
       maxWidth: '900px',  // Set a max width
     });
-  }
-
-  goToDetail(productId: string): void {
-    localStorage.setItem('productId', productId);
   }
 
 }

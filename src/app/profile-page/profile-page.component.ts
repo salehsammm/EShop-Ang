@@ -5,6 +5,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { DialogEditFieldComponent } from '../components/dialog-edit-field/dialog-edit-field.component';
+import { DialogEditNameComponent } from '../components/dialog-edit-name/dialog-edit-name.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -38,11 +39,39 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openEditPhoneDialog(): void {
     const dialogRef = this.dialog.open(DialogEditFieldComponent, {
       width: '30%',
       height: '32%',  
       maxWidth: '900px',  
     });
   }
+
+  openEditFNameDialog(): void {
+    const dialogRef = this.dialog.open(DialogEditNameComponent, {
+      width: '30%',
+      height: '32%',  
+      maxWidth: '900px',  
+    });
+    dialogRef.componentInstance.setFName();
+  }
+
+  openEditLNameDialog(): void {
+    const dialogRef = this.dialog.open(DialogEditNameComponent, {
+      width: '30%',
+      height: '32%',  
+      maxWidth: '900px',  
+    });
+    dialogRef.componentInstance.setLName();
+  }
+
+  openEditUserNameDialog(): void {
+    const dialogRef = this.dialog.open(DialogEditNameComponent, {
+      width: '30%',
+      height: '32%',  
+      maxWidth: '900px',  
+    });
+    dialogRef.componentInstance.setUserName();
+  }
+
 }

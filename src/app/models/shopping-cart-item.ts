@@ -6,4 +6,6 @@ export interface ShoppingCartItem {
     productId: string;
     productName: string;
     productPrice: number;
+    productImgUrl: string;
+    productSlug: string;
 }

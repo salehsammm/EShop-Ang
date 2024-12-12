@@ -12,10 +12,9 @@ import { UserDto } from '../models/user-dto';
 })
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
-  // private apiUrl = 'https://localhost:44370/api/authentication';
   private apiUrl = 'api/authentication';
 
-  private userSubject = new BehaviorSubject<boolean>(this.hasToken())
+  private userSubject = new BehaviorSubject<boolean>(this.hasToken());
   public userStatus$ = this.userSubject.asObservable(); // In Angular, it’s a convention to use the $ suffix for Observables
 
   register(RegisterDto: RegisterDto): Observable<LoginResponse> {
