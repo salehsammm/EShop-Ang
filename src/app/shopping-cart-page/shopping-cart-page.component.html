@@ -1,8 +1,44 @@
 @if (!(shoppingCart?.totalPrice==0 || cartStatus==2) && shoppingCart) {
 <div class="flex-container">
   <div class="container-product">
-    <h3> سبد خرید</h3>
-    <table mat-table [dataSource]="shoppingCart.shoppingCartItems" class="container-cart mat-elevation-z8">
+    <h3> سبد خرید شما</h3>
+    @for (item of shoppingCart.shoppingCartItems; track item) {
+    <div class="box-product">
+      <div class="img-container">
+        <a [routerLink]="['/productDetail',item.productSlug]">
+          <img class="img-product" [src]="item.productImgUrl">
+        </a>
+        <div class="container-count">
+          <button mat-icon-button (click)="addToCart(item.productId)">
+            <mat-icon>add</mat-icon>
+          </button>
+          <span>{{item.count}}</span>
+          @if (item.count>1) {
+            <button mat-icon-button (click)="removeFromCart(item.shoppingCartItemId)">
+              <mat-icon>remove</mat-icon>
+            </button>
+          }@else {
+            <button mat-icon-button (click)="removeFromCart(item.shoppingCartItemId)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          }
+
+        </div>
+      </div>
+      <div class="product-info">
+        <p>{{item.productName}}</p>
+        <div class="minor-detail">
+          <p>قرمز</p>
+          <p>گارانتی اصالت و سلامت فیزیکی کالا</p>
+          <p>فردا کالا</p>
+          <p>ارسال دیجی‌کالا از ۱ روز کاری دیگر</p>
+        </div>
+        <p>{{item.productPrice * item.count | price}} تومان</p>
+      </div>
+    </div>
+    }
+
+    <!-- <table mat-table [dataSource]="shoppingCart.shoppingCartItems" class="container-cart mat-elevation-z8">
       <ng-container matColumnDef="productName">
         <th mat-header-cell *matHeaderCellDef>نام محصول</th>
         <td mat-cell *matCellDef="let item">{{item.productName}}</td>
@@ -17,16 +53,6 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="count">
-        <th mat-header-cell *matHeaderCellDef>تعداد</th>
-        <td mat-cell *matCellDef="let element">{{element.count}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef>قیمت</th>
-        <td mat-cell *matCellDef="let item"> <strong>{{item.productPrice * item.count | price}}</strong> تومان</td>
-      </ng-container>
-
       <ng-container matColumnDef="delete">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let item">
@@ -38,11 +64,11 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    </table> -->
   </div>
   <div class="container-info">
     <p>قیمت کالا ها : {{shoppingCart.totalPrice | price}} تومان </p>
-    <p>جمع سبد خرید  : {{shoppingCart.totalPrice | price}} تومان </p>
+    <p>جمع سبد خرید : {{shoppingCart.totalPrice | price}} تومان </p>
     <p> سود شما از خرید : {{shoppingCart.totalPrice | price}} تومان </p>
     <button mat-flat-button class="btn-pay"> تایید و تکمیل سفارش</button>
   </div>

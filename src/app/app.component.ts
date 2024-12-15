@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterLink, Router, RouterModule } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import {MatButtonModule} from '@angular/material/button'; 
+import {MatIconModule} from '@angular/material/icon'; 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatButtonModule, RouterModule],
+  imports: [RouterOutlet, RouterLink, MatButtonModule, RouterModule, MatIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -1,44 +1,102 @@
-
-.flex-container{
+.flex-container {
     display: flex;
     margin: 10px 30px;
 }
 
-.container-product{
+.container-product {
     flex: 8;
     margin: 0 20px;
 }
 
-.container-info{
-    flex:2;
+.container-info {
+    flex: 2;
     margin: 50px 30px 0 0;
     border: 1px solid rgb(210, 208, 208);
     border-radius: 4px;
     padding: 20px;
     font-weight: 600;
     text-align: center;
+    max-height: 240px;
+    position: sticky;
+    top: 100px;
+    left: 30px;
 }
 
-.container-info p:nth-child(1){
+.container-info p:nth-child(1) {
     color: grey;
 }
 
-.container-info p:nth-child(3){
+.container-info p:nth-child(3) {
     color: rgb(193, 71, 71);
 }
 
-.mat-mdc-header-cell{
+.mat-mdc-header-cell {
     font-weight: 900;
     font-size: 20px;
 }
 
-.container-cart{
+.container-cart {
     margin: 15px 20px;
 }
 
-.btn-pay{
+.btn-pay {
     padding: 25px 50px;
     font-size: 20px;
     border-radius: 10px;
     margin: 10px 10px 0;
+}
+
+.img-container {
+    margin-left: 30px;
+}
+
+.img-product {
+    height: 150px;
+}
+
+.box-product {
+    border: 1px solid rgb(205, 200, 200);
+    border-radius: 2px;
+    padding: 10px 20px 30px 20px;
+    display: flex;
+}
+
+.container-count {
+    border: 1px solid rgb(205, 193, 193);
+    border-radius: 3px;
+    max-width: 132px;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: center;
+    margin: 5px 10px;
+    color: rgb(84, 84, 233);
+    display: flex;
+    align-items: center;
+}
+
+.container-count span {
+    margin: 0 10px;
+}
+
+.container-count button {
+    color: rgb(84, 84, 233);
+    display: flex;
+    align-items: center;
+}
+
+.product-info {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.product-info>p:last-of-type {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.minor-detail {
+    line-height: 8px;
+    color: rgb(100, 95, 95);
+    font-size: 14px;
 }

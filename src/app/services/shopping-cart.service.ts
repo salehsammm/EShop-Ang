@@ -37,6 +37,13 @@ export class ShoppingCartService {
     return this.http.delete<void>(url,{ headers });
   }
 
+  RemoveCountFromCart(shoppingCartItemId: string): Observable<void> {
+    const token = localStorage.getItem('userToken');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${this.apiUrl}/remove/${shoppingCartItemId}`;
+    return this.http.delete<void>(url,{ headers });
+  }
+
   notifyCartUpdate(): void {
     this.getShoppingCart().subscribe({
       next: (cart) => {

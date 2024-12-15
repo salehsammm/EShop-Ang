@@ -4,9 +4,10 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { PricePipe } from '../pipes/price.pipe';
 import { MatTableModule } from '@angular/material/table';
 import { Subscription } from 'rxjs';
-import {MatIconModule} from '@angular/material/icon'; 
-import {MatButtonModule} from '@angular/material/button'; 
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-shopping-cart-page',
@@ -15,7 +16,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './shopping-cart-page.component.css'
 })
 export class ShoppingCartPageComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['productName','productImg', 'count', 'price', 'delete'];
+  displayedColumns: string[] = ['productName', 'productImg', 'count', 'price', 'delete'];
   shoppingCart: ShoppingCart | null = null;
   cartStatus: number = 0;
   userId: string | null = null;
@@ -25,7 +26,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadShoppingCart();
-    this.shoppingCartService.cartUpdate$.subscribe(()=>{
+    this.shoppingCartService.cartUpdate$.subscribe(() => {
       // console.log('add2');
     })
     this.shoppingCartService.getCartUpdateListener().subscribe(() => {
@@ -53,7 +54,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
 
   removeFromCart(shoppingCartItemId: string): void {
     console.log(shoppingCartItemId);
-    this.shoppingCartService.RemoveFromCart(shoppingCartItemId).subscribe({
+    this.shoppingCartService.RemoveCountFromCart(shoppingCartItemId).subscribe({
       next: () => {
         this.userId = localStorage.getItem('userId');
         if (this.userId) {
@@ -63,4 +64,16 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
       error: (err) => console.error('Error removing item:', err),
     });
   }
+
+  addToCart(productId: string): void {
+    this.shoppingCartService.addToCart(productId).subscribe({
+      next: () => {
+        this.loadShoppingCart();
+      },
+      error: (error) => {
+        console.error('Error adding product to cart:', error);
+      }
+    });
+  }
+
 }

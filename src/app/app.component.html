@@ -11,7 +11,9 @@
 
     <div class="nav-left">
       @if (userId) {
-      <a class="btn-header" mat-stroked-button routerLink="cart" routerLinkActive="active" > سبد خرید</a>
+      <a class="btn-header" mat-stroked-button routerLink="cart" routerLinkActive="active" >
+         سبد خرید<mat-icon>shopping cart</mat-icon>
+        </a>
       <a class="btn-header" mat-stroked-button routerLink="profile" routerLinkActive="active"> پروفایل</a>
       <a class="btn-header" mat-stroked-button (click)="logOut()" routerLinkActive="active"> خروج </a>
       }
