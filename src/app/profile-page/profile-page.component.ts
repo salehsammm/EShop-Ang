@@ -29,7 +29,7 @@ export class ProfilePageComponent implements OnInit {
 ;
 
   getUser(): void {
-    this.authenticationService.getUserById().subscribe({
+    this.authenticationService.getUser().subscribe({
       next: (user) => {
         this.user = user;
       },
@@ -45,6 +45,12 @@ export class ProfilePageComponent implements OnInit {
       height: '32%',  
       maxWidth: '900px',  
     });
+
+    dialogRef.componentInstance.fieldUpdate.subscribe(()=>{
+      if (this.user) {
+        this.getUser();
+      }
+    })
   }
 
   openEditFNameDialog(): void {
@@ -54,6 +60,12 @@ export class ProfilePageComponent implements OnInit {
       maxWidth: '900px',  
     });
     dialogRef.componentInstance.setFName();
+
+    dialogRef.componentInstance.fieldUpdate.subscribe(()=>{
+      if (this.user) {
+        this.getUser();
+      }
+    })
   }
 
   openEditLNameDialog(): void {
@@ -63,6 +75,12 @@ export class ProfilePageComponent implements OnInit {
       maxWidth: '900px',  
     });
     dialogRef.componentInstance.setLName();
+
+    dialogRef.componentInstance.fieldUpdate.subscribe(()=>{
+      if (this.user) {
+        this.getUser();
+      }
+    })
   }
 
   openEditUserNameDialog(): void {
@@ -72,6 +90,11 @@ export class ProfilePageComponent implements OnInit {
       maxWidth: '900px',  
     });
     dialogRef.componentInstance.setUserName();
-  }
 
+    dialogRef.componentInstance.fieldUpdate.subscribe(()=>{
+      if (this.user) {
+        this.getUser();
+      }
+    })
+  }
 }

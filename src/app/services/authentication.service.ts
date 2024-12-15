@@ -61,11 +61,21 @@ export class AuthenticationService {
     return false;
   }
 
-  getUserById(): Observable<UserDto> {
+  getUser(): Observable<UserDto> {
     const token = localStorage.getItem('userToken');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     return this.http.get<UserDto>(`${this.apiUrl}`, { headers });
+  }
+
+  updateUser(userDto: UserDto): Observable<void> {
+    const url = `${this.apiUrl}`;
+    return this.http.put<void>(url, userDto).pipe(
+      map(response => {
+        //
+        return response;
+      })
+    );
   }
 
 }

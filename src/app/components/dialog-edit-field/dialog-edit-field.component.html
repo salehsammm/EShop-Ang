@@ -19,7 +19,7 @@
         </mat-form-field>
     </div>
     <div mat-dialog-actions >
-        <button class="d-button" mat-flat-button [disabled]="phone.invalid" 
+        <button (click)="editPhoneNumber(phoneNumber)" class="d-button" mat-flat-button [disabled]="phone.invalid" 
         disabledInteractive  [matTooltip]="phone.invalid ? 'شماره موبایل معتبر وارد کنید' : 'ویراش'" >ویراش شماره موبایل</button>
     </div>
 </div>

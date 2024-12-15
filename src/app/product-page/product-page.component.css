@@ -2,23 +2,24 @@
 .input-search {
     margin: 5px 5px;
     font-size: 20px;
-    width: 88%;
+    width: 98%;
 }
 
 .box-product {
-    margin: 10px;
+    /* margin: 10px; */
+    padding: 3px 10px;
     display: inline-block;
-    border-radius: 5px;
+    border-radius: 1px;
     border: 1px rgb(219, 194, 194) solid;
 }
 
 .box-product:hover {
-    box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.4);
 }
 
 .flex-container {
     display: flex;
-    margin: 1px 130px;
+    margin: 0px;
     margin-top: 130PX;
     flex-wrap: wrap;
 }
