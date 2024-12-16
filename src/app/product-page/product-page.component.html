@@ -7,7 +7,7 @@
   @for(product of products | filter: filterText ; track product){
   <mat-card class="box-product" appearance="outlined">
     <a [routerLink]="['/productDetail',product.slug]">
-      <img mat-card-image [src]="product.imgUrl" height="340px">
+      <img class="img-product" mat-card-image [src]="product.imgUrl">
     </a>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>

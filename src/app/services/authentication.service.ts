@@ -6,12 +6,13 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { LoginResponse } from '../models/login-response';
 import { jwtDecode } from 'jwt-decode';
 import { UserDto } from '../models/user-dto';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private shoppingCartService:ShoppingCartService) { }
   private apiUrl = 'api/authentication';
 
   private userSubject = new BehaviorSubject<boolean>(this.hasToken());
@@ -22,6 +23,7 @@ export class AuthenticationService {
     return this.http.post<LoginResponse>(url, RegisterDto).pipe(
       map(response => {
         this.setAuthData(response.token);
+        this.shoppingCartService.getShoppingCartCount().subscribe();
         return response;
       })
     );
@@ -34,6 +36,7 @@ export class AuthenticationService {
         if (response.status == 1) {
           this.setAuthData(response.token);
         }
+        this.shoppingCartService.getShoppingCartCount().subscribe();
         return response;
       })
     );

@@ -63,3 +63,19 @@
     margin: 10px 2px 5px 2px;
     border-radius: 3px;
 }
+
+.img-product{
+    height: 340px;
+}
+
+@media (max-width:700px) {
+    .img-product{
+        height: 300px;
+    }
+
+    .box-product {
+        display: flex;
+    }
+
+
+}

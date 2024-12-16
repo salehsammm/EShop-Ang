@@ -17,7 +17,7 @@
       <mat-divider></mat-divider>
       <p class="p-price">{{product?.price ?? 0 | price}} <span>تومان</span></p>
       @if (product) {
-          <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
+          <button mat-flat-button (click)="addToCart(product.productId)" class="btn-addtocart">
               افزودن به سبد خرید
             </button>
       }
@@ -35,7 +35,7 @@
           <div class="text-box">
             <div class="product-name"> {{product.name}} </div>
             <div class="product-price">{{product.price | price}}<span> تومان</span></div>
-            <button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
+            <button mat-flat-button (click)="addToCart(product.productId)" class="btn-addtocart" type="button">
               افزودن به سبد خرید
             </button>
           </div>

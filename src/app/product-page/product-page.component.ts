@@ -27,9 +27,6 @@ import {MatInputModule} from '@angular/material/input';
 export class ProductPageComponent implements OnInit {
   filterText: string = '';
   userId: string | null = null;
-
-  @ViewChild(ShoppingCartComponent) shoppingCartComponent!: ShoppingCartComponent;
-
   products: Product[] = [];
 
   constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService,
@@ -75,9 +72,10 @@ export class ProductPageComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogNotLoginComponent, {
-      width: '80%',       // Adjust width
-      height: '70%',      // Adjust height
-      maxWidth: '900px',  // Set a max width
+      width: '30%',
+      height: '30%',     
+      maxWidth: '400px', 
+      autoFocus: false
     });
   }
 

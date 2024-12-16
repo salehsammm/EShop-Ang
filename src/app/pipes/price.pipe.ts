@@ -10,21 +10,24 @@ export class PricePipe implements PipeTransform {
       return '';
     }
 
-    const price2 = price.toString();
-    let result = '';
-    let count = 0;
+    const persianNum = new Intl.NumberFormat('fa-IR').format(price);
+    return (persianNum);
 
-    for (let i=price2.length-1 ; i>=0 ; i--) {
-      count++;
-      result = price2[i] + result;
+    // const price2 = price.toString();
 
-      if (count == 3 && i>0) {
-        count = 0;
-        result = ',' + result;
-      }    
-    }
+    // let result = '';
+    // let count = 0;
 
-    return (result)
+    // for (let i=price2.length-1 ; i>=0 ; i--) {
+    //   count++;
+    //   result = price2[i] + result;
+
+    //   if (count == 3 && i>0) {
+    //     count = 0;
+    //     result = ',' + result;
+    //   }    
+    // }
+
+    // return (result);
   }
-
 }

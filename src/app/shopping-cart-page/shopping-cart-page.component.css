@@ -100,3 +100,8 @@
     color: rgb(100, 95, 95);
     font-size: 14px;
 }
+
+.container-empty{
+    margin: 200px auto;
+    text-align: center;
+}

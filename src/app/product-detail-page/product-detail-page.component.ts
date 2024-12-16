@@ -6,11 +6,15 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 import { AddToCartDto } from '../models/add-to-cart-dto';
 import { PricePipe } from '../pipes/price.pipe';
 import {MatDivider, MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button'; 
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AddCartSnackbarComponent } from '../components/add-cart-snackbar/add-cart-snackbar.component';
+
 
 
 @Component({
   selector: 'app-product-detail-page',
-  imports: [PricePipe,RouterLink, MatDivider],
+  imports: [PricePipe,RouterLink, MatDivider, MatButtonModule, MatSnackBarModule],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.css'
 })
@@ -22,7 +26,7 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
   productSlug: string| null=null;
 
   constructor(private route: ActivatedRoute, private productService: ProductService,
-    private shoppingCartService: ShoppingCartService) { }
+    private shoppingCartService: ShoppingCartService, private snackBar:MatSnackBar) { }
 
     @Input() slug = '';
 
@@ -61,7 +65,10 @@ export class ProductDetailPageComponent implements OnInit , OnChanges{
     if (this.userId) {
       this.shoppingCartService.addToCart(productId).subscribe({
         next: (response) => {
-          //
+          this.snackBar.openFromComponent(AddCartSnackbarComponent, {
+            duration: 3000,
+            horizontalPosition:'start' , verticalPosition: 'bottom'
+          });
         },
         error: (error) => {
           console.error('Error adding product to cart:', error);

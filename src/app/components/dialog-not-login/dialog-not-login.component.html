@@ -1,9 +1,13 @@
 <div class="d-container">
-    <h1 mat-dialog-title class="d-title">NoId</h1>
+    <button mat-icon-button class="close-btn" (click)="close()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <h1 mat-dialog-title class="d-title">اخطار</h1>
+    <hr>
     <div mat-dialog-content>
-        <p>لطفا ابتدا وارد حساب کابری خود شوید</p>
+        <p>برای افزودن کالا به سبد خرید لطفا وارد حساب کابری خود شوید  </p>
     </div>
     <div mat-dialog-actions class="d-button">
-        <button mat-button (click)="close()">Close</button>
+        <button mat-flat-button class="btn-close" (click)="close()">بستن</button>
     </div>
 </div>

@@ -1,8 +1,8 @@
 <main class="main">
   <div class="header-nav">
     <div class="nav-right">
-      <a class="btn-header" mat-stroked-button routerLink="" >فروشگاه آنلاین</a>
-      <a class="btn-header" mat-stroked-button routerLink="products" routerLinkActive="active" >محصولات</a>
+      <a class="btn-header" mat-stroked-button routerLink="">فروشگاه آنلاین</a>
+      <a class="btn-header" mat-stroked-button routerLink="products" routerLinkActive="active">محصولات</a>
     </div>
 
     <!-- @if (userId) {
@@ -11,11 +11,20 @@
 
     <div class="nav-left">
       @if (userId) {
-      <a class="btn-header" mat-stroked-button routerLink="cart" routerLinkActive="active" >
-         سبد خرید<mat-icon>shopping cart</mat-icon>
-        </a>
-      <a class="btn-header" mat-stroked-button routerLink="profile" routerLinkActive="active"> پروفایل</a>
-      <a class="btn-header" mat-stroked-button (click)="logOut()" routerLinkActive="active"> خروج </a>
+      <a class="cart-icon" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>person</mat-icon>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </a>
+      <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item routerLink="profile">پروفایل</button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span> خروج از حساب کاربری</span>
+        </button>
+      </mat-menu>
+      <a class="cart-icon" mat-icon-button [matBadge]="cartItemCount" [matBadgeHidden]="cartItemCount==0" matBadgePosition="before" routerLink="cart" routerLinkActive="active">
+        <mat-icon>shopping_cart</mat-icon>
+      </a>
       }
       @else {
       <a class="btn-header" mat-stroked-button routerLink="authentication" routerLinkActive="active"> ثبت‌نام/ورود</a>

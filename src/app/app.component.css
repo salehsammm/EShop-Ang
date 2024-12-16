@@ -7,12 +7,12 @@
 
 .header-nav{
     margin-bottom: 5px;
-    background-color: rgb(207, 218, 237);
+    background-color:#d7e3ff;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     font-size: 20px;
 }
 
@@ -31,7 +31,7 @@
 
 .btn-header:hover {
     white-space: nowrap;
-    background-color: rgb(132, 189, 229);
+    background-color: rgb(165, 206, 235);
     cursor: pointer;
 }
 
@@ -51,5 +51,10 @@
 }
 
 .active{
-    background-color: rgb(114, 165, 202);
+    background-color: #c1d5f8;
+}
+
+.cart-icon{
+    width: 70px;
+    margin: 0 10px;
 }
