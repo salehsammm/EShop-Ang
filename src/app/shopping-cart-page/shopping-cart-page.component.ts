@@ -53,7 +53,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   }
 
   removeFromCart(shoppingCartItemId: string): void {
-    console.log(shoppingCartItemId);
+    // console.log(shoppingCartItemId);
     this.shoppingCartService.RemoveCountFromCart(shoppingCartItemId).subscribe({
       next: () => {
         this.userId = localStorage.getItem('userId');

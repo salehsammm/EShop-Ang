@@ -12,18 +12,22 @@ import { ShoppingCartService } from './shopping-cart.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  constructor(private http: HttpClient, private shoppingCartService:ShoppingCartService) { }
+  constructor(private http: HttpClient, private shoppingCartService: ShoppingCartService) { }
   private apiUrl = 'api/authentication';
 
   private userSubject = new BehaviorSubject<boolean>(this.hasToken());
-  public userStatus$ = this.userSubject.asObservable(); // In Angular, it’s a convention to use the $ suffix for Observables
+  public userStatus$ = this.userSubject.asObservable();
 
   register(RegisterDto: RegisterDto): Observable<LoginResponse> {
     const url = `${this.apiUrl}/register`;
+    // console.log('from service');
     return this.http.post<LoginResponse>(url, RegisterDto).pipe(
       map(response => {
-        this.setAuthData(response.token);
-        this.shoppingCartService.getShoppingCartCount().subscribe();
+        // console.log(response);
+        if (response.status == 1) {
+          this.setAuthData(response.token);
+          this.shoppingCartService.getShoppingCartCount().subscribe();
+        }
         return response;
       })
     );

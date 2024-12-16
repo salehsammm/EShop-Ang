@@ -107,12 +107,15 @@ export class AuthPageComponent implements OnInit {
       this.authenticationService.register(registerDto).subscribe({
         next: (response: LoginResponse) => {
           this.response = response;
+          // console.log(response);
+          if (response.status==1) {
             setTimeout(() => {
               this.router.navigate(['/products']);
             }, 500);
+          }
         },
         error: (err) => {
-          console.error('Error fetching products:', err);
+          console.error('Error at register:', err);
         }
       });
     }

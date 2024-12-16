@@ -25,13 +25,16 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.authenticationService.userStatus$.subscribe(() =>{
       this.userId = localStorage.getItem('userId');
+      if (this.userId) {
+        this.shoppingCartService.cartCount$.subscribe(count => {
+          this.cartItemCount = count;
+        });
+        this.shoppingCartService.getShoppingCartCount().subscribe();
+      }
       this.userName = localStorage.getItem('userName');
     })
     
-    this.shoppingCartService.cartCount$.subscribe(count => {
-      this.cartItemCount = count;
-    });
-    this.shoppingCartService.getShoppingCartCount().subscribe();
+
   }
 
   logOut(): void {

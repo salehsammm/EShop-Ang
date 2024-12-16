@@ -113,3 +113,22 @@
         display: block;
     }
 }
+
+@media (max-width:600px){
+
+    .img-detail{
+        margin: 5px;
+        height: 20em;
+    }
+
+    .flex-container{
+        margin: 100px 5px;
+    }
+}
+
+@media (max-width:430px){
+    .img-detail{
+        margin: 0px;
+        height: 16em;
+    }
+}

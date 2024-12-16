@@ -27,7 +27,6 @@ export class PricePipe implements PipeTransform {
     //     result = ',' + result;
     //   }    
     // }
-
     // return (result);
   }
 }

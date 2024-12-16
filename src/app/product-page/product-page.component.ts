@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ShoppingCartComponent } from '../components/shopping-cart/shopping-cart.component'
 import { FilterPipe } from '../pipes/filter.pipe'
 import { ProductService } from '../services/product.service';
 import { ShoppingCartService } from '../services/shopping-cart.service';
