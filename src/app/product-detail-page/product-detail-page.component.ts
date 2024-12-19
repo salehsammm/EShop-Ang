@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { AddToCartDto } from '../models/add-to-cart-dto';
 import { PricePipe } from '../pipes/price.pipe';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,11 +10,13 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddCartSnackbarComponent } from '../components/add-cart-snackbar/add-cart-snackbar.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogNotLoginComponent } from '../components/dialog-not-login/dialog-not-login.component';
+import { NgOptimizedImage } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-product-detail-page',
-  imports: [PricePipe, RouterLink, MatDivider, MatButtonModule, MatSnackBarModule],
+  imports: [PricePipe, RouterLink, MatDivider, MatButtonModule, MatSnackBarModule,NgOptimizedImage],
   templateUrl: './product-detail-page.component.html',
   styleUrl: './product-detail-page.component.css'
 })

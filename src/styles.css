@@ -1,16 +1,28 @@
 @font-face {
   font-family: 'nazanin'; 
-  src: url('/public/fonts/B-NAZANIN.TTF') format('truetype');
+  src: url('/fonts/B-NAZANIN.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'nazanin2'; 
+  src: url('/fonts/Far_Nazanin.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'mitra'; 
+  src: url('/fonts/B Mitra_0.TTF') format('truetype');
 }
 
 @font-face {
   font-family: 'iran yekan' ;
-  src: url('/public/fonts/B-NAZANIN.TTF') format('truetype');
+  src: url('/fonts/B-NAZANIN.TTF') format('truetype');
 }
 
 html, body {
     background-color: rgb(255, 255, 255) !important;
     height: 100%;
     margin: 0;
-    font-family: 'iran yekan','nazanin',Arial, sans-serif !important;
+    font-family: 'mitra','nazanin2', !important;
+    /* font-family: 'mitra','nazanin2','nazanin',Arial, sans-serif !important; */
+    /* font-family: Arial, sans-serif !important; */
 }

@@ -7,7 +7,13 @@
   @for(product of products | filter: filterText ; track product){
   <mat-card class="box-product" appearance="outlined">
     <a [routerLink]="['/productDetail',product.slug]">
-      <img class="img-product" mat-card-image [src]="product.imgUrl">
+      <picture>
+        <source [srcset]="product.imgUrl" [media]="'(max-width: 500px)'" width="140" height="140" />
+        <source  [srcset]="product.imgUrl" [media]="'(max-width: 790px)'" width="200" height="200" />       
+        <img [ngSrc]="product.imgUrl" width="340" height="340" priority />
+      </picture>
+
+      <!-- <img mat-card-image [ngSrc]="product.imgUrl" width="340" height="340" priority> -->
     </a>
     <mat-card-header>
       <div mat-card-avatar></div>

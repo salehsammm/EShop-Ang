@@ -6,7 +6,10 @@
     <div class="box-product">
       <div class="img-container">
         <a [routerLink]="['/productDetail',item.productSlug]">
-          <img class="img-product" [src]="item.productImgUrl">
+          <picture>
+            <source [srcset]="item.productImgUrl" [media]="'(max-width: 590px)'" width="100" height="100" />
+            <img [ngSrc]="item.productImgUrl" width="150" height="150">
+          </picture>
         </a>
         <div class="container-count">
           <button mat-icon-button (click)="addToCart(item.productId)">

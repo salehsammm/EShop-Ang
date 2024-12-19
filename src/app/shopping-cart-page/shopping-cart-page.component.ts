@@ -7,11 +7,12 @@ import { Subscription } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common'
 
 
 @Component({
   selector: 'app-shopping-cart-page',
-  imports: [PricePipe, MatTableModule, MatIconModule, MatButtonModule, RouterLink],
+  imports: [PricePipe, MatTableModule, MatIconModule, MatButtonModule, RouterLink, NgOptimizedImage],
   templateUrl: './shopping-cart-page.component.html',
   styleUrl: './shopping-cart-page.component.css'
 })

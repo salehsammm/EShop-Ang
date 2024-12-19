@@ -19,8 +19,9 @@
 .flex-container {
     display: flex;
     margin: 0px;
-    margin-top: 130PX;
+    margin-top: 100PX;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .product-price {
@@ -65,6 +66,12 @@
 
 .img-product {
     height: 340px;
+}
+
+@media (max-width:1500px){
+    .flex-container {
+        justify-content: center;
+    }
 }
 
 @media (max-width:790px) {

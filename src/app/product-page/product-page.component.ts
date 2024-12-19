@@ -14,12 +14,14 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogNotLoginComponent } from '../components/dialog-not-login/dialog-not-login.component';
 import {MatButtonModule} from '@angular/material/button'; 
 import {MatInputModule} from '@angular/material/input';
+import { NgOptimizedImage } from '@angular/common'
+
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
   imports: [CommonModule, FormsModule, FilterPipe, RouterLink, PricePipe, MatCardModule, MatSnackBarModule, 
-    MatDialogModule, MatButtonModule, MatInputModule],
+    MatDialogModule, MatButtonModule, MatInputModule, NgOptimizedImage],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css'
 })

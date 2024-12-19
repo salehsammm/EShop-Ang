@@ -1,0 +1,42 @@
+.stories-container {
+    display: flex;
+    padding: 80px 60px;
+    margin: 70px 10px;
+    overflow: scroll;
+    opacity: 1;
+}
+
+.story {
+    border-radius: 600px;
+    /* padding: 40px; */
+    width: 80px;
+    height: 80px;
+    display: block;
+    border: 1px solid black;
+    outline: 3px solid purple;
+    outline-offset: 5px;
+    background-image: url('/images/story.jpg');
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.story image {
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+}
+
+.story a {
+    border-radius: 600px;
+}
+
+.story-container {
+    width: 150px;
+    margin: 10px 10px;
+    position: relative;
+}
+
+.story-container span {
+    font-size: 15px;
+}

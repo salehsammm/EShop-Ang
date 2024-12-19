@@ -1,0 +1,28 @@
+
+.toolbar-container{
+    padding: 0px 5px;
+}
+
+.toolbar-container button{
+    color: grey;
+    border-radius: 1px;
+}
+
+.toolbar-container button:hover{
+border-bottom: 4px solid red;
+}
+
+.toolbar-container button:first-child{
+    color: black;
+    font-weight: 600;
+    border-left: 1px solid grey;
+}
+
+.toolbar-container button:nth-child(6){
+    border-radius: 1px;
+    border-left: 1px solid grey;
+}
+
+.mat-mdc-button{
+    padding: 0px 20px;
+}
